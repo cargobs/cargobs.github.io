@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGS</title>
+    <link rel="shortcut icon" type="image/jpg" href="assets/img/fav.png" />
+    <link href="assets/css/login.css" rel="stylesheet">
+    
+    <header>
+        <a class="logo" href="index.html"><img src="assets/img/Cargo.png" alt="logo" width="100px"></a>
+        <a class="cta" href="assets/cbs.pdf" target="_blank" rel="noopener noreferrer">Pricing</a>
+    </header>
+</head>
+
+<body>
+    <div class="center">
+        <h1>ADMIN LOGIN</h1>
+        <form method="post">
+            <div class="txt_field">
+                <input type="mail" id="email" required>
+                <span></span>
+                <label>Mail-id</label>
+            </div>
+            <div class="txt_field">
+                <input type="password"id="password"  required>
+                <span></span>
+                <label>Password</label>
+            </div>
+            <button type="button" class="btn btn-success" onclick="validate();">Login</button>
+        </form>
+    </div>
+    <div class="footer-bottom">
+        <p>Copyright &copy; 2021 designed by <span>(MV)S7</span></p>
+    </div>
+</body>
+<script>
+    function validate() {
+        var username = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        if (username == "admin@admin.com" && password == "123456") {
+            alert('Login successful');
+            window.location.href = "./admindash.html"
+        }
+        else {            
+            alert('Login failed')
+        }
+
+    }
+</script>
+
+</html>

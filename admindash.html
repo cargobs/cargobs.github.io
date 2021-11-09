@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGS</title>
+    <link rel="shortcut icon" type="image/jpg" href="assets/img/fav.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <header>
+        <a class="logo" href="index.html"><img src="assets/img/Cargo.png" alt="logo" width="100px"></a>
+        <a class="cta" href="assets/cbs.pdf" target="_blank" rel="noopener noreferrer">Pricing</a>
+    </header>
+    <style>
+        /*Head*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 30px 10%;
+  background-color: #24252a;
+}
+
+.logo {
+  margin-right: auto;
+}
+
+.cta {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #edf0f1;
+  text-decoration: none;
+  margin-left: 20px;
+  padding: 9px 25px;
+  background-color: rgba(0, 136, 169, 1);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+.cta:hover {
+  background-color: rgba(0, 136, 169, 0.8);
+}
+
+/* Mobile Nav */
+
+.menu {
+  display: none;
+}
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  background-color: #24252a;
+  overflow-x: hidden;
+  transition: all 0.5s ease 0s;
+}
+
+.overlay--active {
+  width: 100%;
+}
+
+.overlay__content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay a {
+  padding: 15px;
+  font-size: 36px;
+  display: block;
+  transition: all 0.3s ease 0s;
+}
+
+.overlay a:hover,
+.overlay a:focus {
+  color: #0088a9;
+}
+.overlay .close {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+  color: #edf0f1;
+  cursor: pointer;
+}
+        .labs{
+            display:inline-block;
+            width:100px;
+        }
+        .container {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 1000px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
+}
+        /*Foot*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #fcfcfc;
+}
+.footer-bottom {
+  background: #000;
+  width: 100vw;
+  padding: 20px 0;
+  text-align: center;
+  bottom: 0%;
+  position: fixed;
+}
+.footer-bottom p {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #edf0f1;
+  text-decoration: none;
+  font-size: 14px;
+  word-spacing: 2px;
+  text-transform: capitalize;
+}
+.footer-bottom span {
+  text-transform: uppercase;
+  opacity: 0.4;
+  font-weight: 200;
+}
+
+    </style>
+</head>
+
+<body>
+    <div class ="container">
+    <table class = "table table-dark">
+        <thead>
+            <th>Sno</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Weight</th>
+            <th>Information</th>
+            <th>Control Center</th>
+        </thead>
+        <tbody id="tbody1">
+
+        </tbody>
+    </table>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Control Panel</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label class = "labs">Name: </label>
+                    <input type="text" id="NameMod"> <br>
+                    <label class="labs">Date: </label>
+                    <input type="date" id="DateMod"> <br>
+                    <label class="labs">From: </label>
+                    <input type="text" id="FromMod"> <br>
+                    <label class="labs">To: </label>
+                    <input type="text" id="ToMod"> <br>
+                    <label class="labs">Weight: </label>
+                    <input type="number" id="WeightMod"> <br>
+                    <label class="labs">Information: </label>
+                    <input type="text" id="InfoMod"> <br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="AddModBtn"class="btn btn-primary" onclick="AddUsr()">Add New Record</button>
+                    <button type="button" id="UpdModBtn"class="btn btn-success" onclick="UpdUsr()">Update Record</button>
+                    <button type="button" id="DelModBtn"class="btn btn-danger" onclick="DelUsr()">Delete Record</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>Copyright &copy; 2021 designed by <span>(MV)S7</span></p>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script id="MainScript">
+        var firebaseConfig = {
+            apiKey: "AIzaSyB7TmV54nkn8H9aiMwGwAJhoZ3qnJwvBJM",
+            authDomain: "cargo-auth-2c84d.firebaseapp.com",
+            databaseURL: "https://cargo-auth-2c84d-default-rtdb.firebaseio.com",
+            projectId: "cargo-auth-2c84d",
+            storageBucket: "cargo-auth-2c84d.appspot.com",
+            messagingSenderId: "213935421730",
+            appId: "1:213935421730:web:e3efab824bc6db6d164d7b"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        var stdNo ;
+
+        function SelectAllData() {
+            document.getElementById('tbody1').innerHTML="";
+            stdNo = 0;
+            firebase.database().ref('Users').on('value',
+                function (AllRecords) {
+                    AllRecords.forEach(
+                        function (CurrentRecord) {
+                            var name = CurrentRecord.val().Name;
+                            var date = CurrentRecord.val().Date;
+                            var from = CurrentRecord.val().From;
+                            var to = CurrentRecord.val().To;
+                            var weight = CurrentRecord.val().Weight;
+                            var information = CurrentRecord.val().Information;
+                            AdditemstoTable(name, date, from, to, weight, information);
+                        });
+                });
+        }
+        window.onload = SelectAllData;
+
+        
+        var usrlist=[];
+        function AdditemstoTable(name, date, from, to, weight, information) {
+            var tbody = document.getElementById('tbody1');
+            var trow = document.createElement('tr');
+            var td1 = document.createElement('td');
+            var td2 = document.createElement('td');
+            var td3 = document.createElement('td');
+            var td4 = document.createElement('td');
+            var td5 = document.createElement('td');
+            var td6 = document.createElement('td');
+            var td7 = document.createElement('td');
+            usrlist.push([name, date, from, to, weight, information]);
+            td1.innerHTML = ++stdNo;
+            td2.innerHTML = name;
+            td3.innerHTML = date;
+            td4.innerHTML = from;
+            td5.innerHTML = to;
+            td6.innerHTML = weight;
+            td7.innerHTML = information;
+            trow.appendChild(td1);
+            trow.appendChild(td2);
+            trow.appendChild(td3);
+            trow.appendChild(td4);
+            trow.appendChild(td5);
+            trow.appendChild(td6);
+            trow.appendChild(td7);
+
+            var ControlDiv = document.createElement("div");
+            ControlDiv.innerHTML = '<button type="button" class="btn btn-primary my-2" data-toggle="modal" data-target="#exampleModalCenter" onclick="FillTboxes(null)">Add New Record</button >'
+            ControlDiv.innerHTML += '<button type="button" class="btn btn-primary my-2 ml-2" data-toggle="modal" data-target="#exampleModalCenter" onclick="FillTboxes('+stdNo+')">Edit Record</button >'
+            
+            trow.appendChild(ControlDiv);
+
+            tbody.appendChild(trow);
+        }
+
+        var ModName = document.getElementById('NameMod');
+        var ModDate = document.getElementById('DateMod');
+        var ModFrom = document.getElementById('FromMod');
+        var ModTo = document.getElementById('ToMod');
+        var ModWeight = document.getElementById('WeightMod');
+        var ModInfo = document.getElementById('InfoMod');
+
+        var BTNModAdd = document.getElementById('AddModBtn');
+        var BTNModUpd = document.getElementById('UpdModBtn');
+        var BTNModDel = document.getElementById('DelModBtn');
+
+        function FillTboxes(index){
+            if(index==null){
+                ModName.value = "";
+                ModDate.value = "";
+                ModFrom.value = "";
+                ModTo.value = "";
+                ModWeight.value = "";
+                ModInfo.value = "";
+                BTNModAdd.style.display = "inline-block";
+                BTNModUpd.style.display = "none";
+                BTNModDel.style.display = "none";
+            }
+            else{
+                --index;
+                ModName.value = usrlist[index][0];
+                ModDate.value = usrlist[index][1];
+                ModFrom.value = usrlist[index][2];
+                ModTo.value = usrlist[index][3];
+                ModWeight.value = usrlist[index][4];
+                ModInfo.value = usrlist[index][5];
+                ModName.disabled=true;
+                BTNModAdd.style.display = "none";
+                BTNModUpd.style.display = "inline-block";
+                BTNModDel.style.display = "inline-block";
+            }
+        }
+        function AddUsr(){
+            firebase.database().ref("Users/"+ModName.value).set(
+                {
+                    Name: ModName.value,
+                    Date: ModDate.value,
+                    From: ModFrom.value,
+                    To: ModTo.value,
+                    Weight: ModWeight.value,
+                    Information: ModInfo.value,
+            },
+            (error) =>{
+                if(error){
+                    alert("Record was not Added, there was some problem");
+                }
+                else{
+                    alert("Record was Added Succesfully");
+                    SelectAllData();
+                    $("#exampleModelCenter").modal('hide');
+                }
+            }
+            )
+        }
+        function UpdUsr() {
+                firebase.database().ref("Users/"+ModName.value).update(
+                    {
+                        Date: ModDate.value,
+                        From: ModFrom.value,
+                        To: ModTo.value,
+                        Weight: ModWeight.value,
+                        Information: ModInfo.value,
+                    },
+                    (error) => {
+                        if (error) {
+                            alert("Record was not Updated, there was some problem");
+                        }
+                        else {
+                            alert("Record was Updated Succesfully");
+                            SelectAllData();
+                            $("#exampleModelCenter").modal('hide');
+                        }
+                    }
+                )
+            }
+            function DelUsr() {
+                    firebase.database().ref("Users/"+ModName.value).remove().then(
+                        function(){
+                            alert("Record was Deleted Succesfully");
+                            SelectAllData();
+                            $("#exampleModelCenter").modal('hide');
+                        } 
+                        )
+                }
+
+    </script>
+</body>
+
+</html>

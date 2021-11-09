@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGS</title>
+    <link rel="shortcut icon" type="image/jpg" href="assets/img/fav.png" />
+    <link href="assets/css/login.css" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <header>
+        <a class="logo" href="index.html"><img src="assets/img/Cargo.png" alt="logo" width="100px"></a>
+        <a class="cta" href="assets/cbs.pdf" target="_blank" rel="noopener noreferrer">Pricing</a>
+    </header>
+</head>
+
+<body>
+    <div class="center">
+        <h1>Login</h1>
+        <form method="post">
+            <div class="txt_field">
+                <input type="email" id="email" required>
+                <span></span>
+                <label>Mail-id</label>
+            </div>
+            <div class="txt_field">
+                <input type="password" id="password" required>
+                <span></span>
+                <label>Password</label>
+            </div>
+            <button type="button" class="btn btn-success" id="insert">Login</button>
+            <div class="signup_link">
+                Already a member? <a href="./register.html">Signup</a>
+            </div>
+        </form>
+    </div>
+    <div class="footer-bottom">
+        <p>Copyright &copy; 2021 designed by <span>(MV)S7</span></p>
+    </div>
+</body>
+
+</html>
